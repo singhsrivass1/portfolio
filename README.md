@@ -3,6 +3,7 @@
 Personal portfolio built to showcase my projects, learning journey, and interests across AI/ML, software engineering, and problem solving.
 Designed with a minimal, typography-first approach inspired by modern product design systems.
 
+Link- https://srivxdev.vercel.app/
 ## Stack
 
 - Next.js
