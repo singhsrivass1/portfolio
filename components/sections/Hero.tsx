@@ -1,5 +1,5 @@
 "use client";
-
+import AIVisual from "@/components/ui/AIVisual";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 
@@ -12,8 +12,7 @@ export default function Hero() {
       <div aria-hidden style={{ position: "absolute", top: -120, right: -80, width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(79,70,229,0.06) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
       <div aria-hidden style={{ position: "absolute", bottom: -80, left: -120, width: 480, height: 480, borderRadius: "50%", background: "radial-gradient(circle, rgba(79,70,229,0.04) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
-        <motion.div variants={staggerContainer} initial="hidden" animate="visible" style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+<div style={{ maxWidth: 1100, margin: "0 auto", width: "100%", position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "center" }} className="hero-grid">        <motion.div variants={staggerContainer} initial="hidden" animate="visible" style={{ display: "flex", flexDirection: "column", gap: 28 }}>
 
           <motion.div variants={fadeUp}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 12, fontWeight: 500, color: "var(--color-accent)", letterSpacing: "0.05em", textTransform: "uppercase", padding: "5px 12px", borderRadius: "var(--radius-full)", border: "1px solid var(--color-accent-muted)", background: "var(--color-accent-soft)" }}>
@@ -71,10 +70,50 @@ export default function Hero() {
 
         </motion.div>
 
+        <div
+          className="hero-right"
+          style={{
+  height: 480,
+  borderRadius: "var(--radius-xl)",
+  overflow: "hidden",
+  border: "1px solid var(--color-border)",
+  background: "linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg-subtle) 100%)",
+  position: "relative",
+  boxShadow: "var(--shadow-sm)",
+}}
+        >
+          <AIVisual />
+          <div style={{
+            position: "absolute",
+            bottom: 24,
+            left: 24,
+            fontSize: 11,
+            color: "var(--color-ink-4)",
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
+            fontWeight: 500,
+          }}>
+            
+          </div>
+          <div style={{
+  position: "absolute",
+  bottom: 24,
+  left: 24,
+  display: "flex",
+  flexDirection: "column",
+  gap: 4,
+}}>
+  <span style={{ fontSize: 10, color: "var(--color-ink-4)", letterSpacing: "0.06em", fontFamily: "var(--font-mono, monospace)" }}>context: active</span>
+  <span style={{ fontSize: 10, color: "var(--color-ink-4)", letterSpacing: "0.06em", fontFamily: "var(--font-mono, monospace)" }}>retrieval: complete</span>
+  <span style={{ fontSize: 10, color: "var(--color-ink-4)", letterSpacing: "0.06em", fontFamily: "var(--font-mono, monospace)" }}>tokens: propagating</span>
+</div>
+        </div>
 
       </div>
 
-      <style>{`@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }`}</style>
-    </section>
+<style>{`
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  @media (max-width: 768px) { .hero-grid { grid-template-columns: 1fr !important; } .hero-right { display: none !important; } }
+`}</style>    </section>
   );
 }
