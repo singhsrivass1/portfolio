@@ -4,12 +4,22 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Srivass Software Developer & AI/ML Engineer",
-  description: "Software developer building AI-powered systems, backend infrastructure, and scalable products. B.Tech AI/ML student at BIT Mesra.",
+  title: "Srivass Kumar — Software Engineer & AI/ML Developer",
+  description: "Third-year AI/ML student at BIT Mesra building backend systems, full-stack AI products, and solving problems through code.",
+  keywords: "Srivass Kumar, AI ML developer, BIT Mesra, software engineering intern, Python FastAPI Next.js, machine learning, computer vision",
+  authors: [{ name: "Srivass Kumar" }],
+  creator: "Srivass Kumar",
   openGraph: {
-    title: "Srivass Software Developer & AI/ML Engineer",
-    description: "Building scalable software systems and practical AI-driven applications.",
+    title: "Srivass Kumar — Software Engineer & AI/ML Developer",
+    description: "Third-year AI/ML student at BIT Mesra building backend systems, full-stack AI products, and solving problems through code.",
     type: "website",
+    locale: "en_IN",
+    url: "https://srivxdev.vercel.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Srivass Kumar — Software Engineer & AI/ML Developer",
+    description: "Third-year AI/ML student at BIT Mesra building backend systems and full-stack AI products.",
   },
 };
 

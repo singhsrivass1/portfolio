@@ -1,62 +1,56 @@
 "use client";
-import { Brain, BarChart2, Bot, Settings, Monitor, Database } from "lucide-react";
+import { Brain, Code2, Cpu, Monitor, Database, Layers } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 
 const LEARNING = [
   {
     title: "Advanced DSA",
-    desc: "Advanced data structures & algorithms for scalable problem solving, graphs, segment trees, DP optimizations.",
-    icon: <Brain size={20} strokeWidth={1.5} />,
+    note: "Working through graph problems and DP patterns on Codeforces. Slowly getting less wrong.",
+    icon: <Brain size={18} strokeWidth={1.5} />,
     tag: "CS Foundations",
-    progress: 60,
     color: "#4F46E5",
-    resources: ["LeetCode", "Codeforces", "Striver A2Z Sheet"],
+    resources: ["LeetCode", "Codeforces", "Striver A2Z"],
   },
   {
-    title: "ML Pipelines",
-    desc: "Machine learning fundamentals and practical ML pipelines, from data preprocessing to model deployment.",
-    icon: <BarChart2 size={20} strokeWidth={1.5} />,
-    tag: "Machine Learning",
-    progress: 55,
-    color: "#059669",
-    resources: ["campus-x yt", "Scikit-learn docs", "Kaggle"],
+    title: "Backend Development",
+    note: "Building Oasis pushed me toward understanding how backend systems actually fit together. Still learning.",
+    icon: <Code2 size={18} strokeWidth={1.5} />,
+    tag: "Engineering",
+    color: "#0891B2",
+    resources: ["FastAPI docs", "Oasis project", "PostgreSQL"],
   },
   {
     title: "LLM Engineering",
-    desc: "Large language model workflows and AI application engineering, RAG, agents, prompt engineering, evaluation.",
-    icon: <Bot size={20} strokeWidth={1.5} />,
+    note: "Prompt engineering, structured outputs, and fallback handling. Krafti and Kajal Cartel were the practical side of this.",
+    icon: <Cpu size={18} strokeWidth={1.5} />,
     tag: "AI Engineering",
-    progress: 0,
     color: "#D97706",
     resources: ["LangChain docs", "OpenAI Cookbook", "Papers"],
   },
   {
-    title: "Full-Stack Systems",
-    desc: "Building performant full-stack applications with modern developer tooling, Next.js, TypeScript, system design.",
-    icon: <Settings size={20} strokeWidth={1.5} />,
-    tag: "Engineering",
-    progress: 10,
+    title: "Next.js Ecosystem",
+    note: "Kajal Cartel is where most of this came from. TypeScript and App Router are starting to click.",
+    icon: <Layers size={18} strokeWidth={1.5} />,
+    tag: "Frontend",
     color: "#7C3AED",
-    resources: ["Next.js docs", "System Design Primer", "Building projects"],
+    resources: ["Next.js docs", "Kajal Cartel project"],
   },
   {
     title: "Operating Systems",
-    desc: "Core OS concepts, processes, threads, memory management, scheduling, and file systems. Essential CS foundations.",
-    icon: <Monitor size={20} strokeWidth={1.5} />,
+    note: "Going through Gate Smashers and university coursework. The chapter on virtual memory took three reads.",
+    icon: <Monitor size={18} strokeWidth={1.5} />,
     tag: "CS Foundations",
-    progress: 80,
-    color: "#0891B2",
+    color: "#059669",
     resources: ["Gate Smashers", "University coursework"],
   },
   {
     title: "Database Systems",
-    desc: "Relational databases, SQL, normalization, indexing, and query optimization. Building a strong data engineering foundation.",
-    icon: <Database size={20} strokeWidth={1.5} />,
+    note: "SQL basics, normalization, indexing. PostgreSQL in Oasis made a lot of this practical rather than theoretical.",
+    icon: <Database size={18} strokeWidth={1.5} />,
     tag: "CS Foundations",
-    progress: 80,
     color: "#BE185D",
-    resources: ["Gate Smashers", "University coursework", "Practice projects"],
+    resources: ["Gate Smashers", "PostgreSQL docs"],
   },
 ];
 
@@ -76,41 +70,19 @@ export default function CurrentlyLearning() {
             </span>
           </motion.div>
 
-          <motion.div variants={staggerContainer} style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }} className="learn-grid">
+          <motion.div variants={staggerContainer} style={{ display: "grid", gridTemplateColumns: "1fr", gap: 0 }} className="learn-grid">
             {LEARNING.map((item, i) => (
               <motion.div key={item.title} variants={fadeUp} custom={i}
-                style={{ padding: "28px", borderRadius: "var(--radius-xl)", border: "1px solid var(--color-border)", background: "var(--color-surface)", display: "flex", flexDirection: "column", gap: 16, cursor: "default" }}
-                whileHover={{ y: -2, boxShadow: "var(--shadow-md)", borderColor: "var(--color-border-strong)" }}>
-
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                  <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-<span style={{ color: item.color }}>{item.icon}</span>                    <div>
-                      <span style={{ fontSize: 10, fontWeight: 600, color: item.color, letterSpacing: "0.06em", textTransform: "uppercase", display: "block", marginBottom: 3 }}>{item.tag}</span>
-                      <h3 style={{ fontSize: 17, fontWeight: 700, letterSpacing: "-0.02em", color: "var(--color-ink)" }}>{item.title}</h3>
-                    </div>
-                  </div>
-                  <span style={{ fontSize: 12, fontWeight: 600, color: item.color }}>{item.progress}%</span>
+                style={{ padding: "20px 0", borderBottom: i < LEARNING.length - 1 ? "1px solid var(--color-border)" : "none", display: "flex", flexDirection: "column", gap: 8 }}>
+                <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+                  <span style={{ color: item.color, flexShrink: 0 }}>{item.icon}</span>
+                  <span style={{ fontSize: 10, fontWeight: 600, color: item.color, letterSpacing: "0.07em", textTransform: "uppercase", padding: "2px 8px", borderRadius: "var(--radius-full)", border: `1px solid ${item.color}30`, background: `${item.color}10` }}>{item.tag}</span>
+                  <p style={{ fontSize: 15, fontWeight: 600, color: "var(--color-ink)", letterSpacing: "-0.01em" }}>{item.title}</p>
                 </div>
-
-                <p style={{ fontSize: 14, color: "var(--color-ink-3)", lineHeight: 1.65, letterSpacing: "-0.005em" }}>{item.desc}</p>
-
-                {/* Progress bar */}
-                <div>
-                  <div style={{ height: 4, borderRadius: 2, background: "var(--color-bg-muted)", overflow: "hidden" }}>
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${item.progress}%` }}
-                      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
-                      viewport={{ once: true }}
-                      style={{ height: "100%", borderRadius: 2, background: item.color }}
-                    />
-                  </div>
-                </div>
-
-                {/* Resources */}
-                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                <p style={{ fontSize: 13, color: "var(--color-ink-3)", lineHeight: 1.65, letterSpacing: "-0.005em", paddingLeft: 28 }}>{item.note}</p>
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap", paddingLeft: 28 }}>
                   {item.resources.map((r) => (
-                    <span key={r} style={{ fontSize: 11, fontWeight: 500, color: "var(--color-ink-4)", padding: "3px 8px", borderRadius: "var(--radius-sm)", background: "var(--color-bg-muted)", letterSpacing: "-0.005em" }}>{r}</span>
+                    <span key={r} style={{ fontSize: 11, fontWeight: 500, color: "var(--color-ink-4)", padding: "2px 8px", borderRadius: "var(--radius-sm)", background: "var(--color-bg-muted)", letterSpacing: "-0.005em" }}>{r}</span>
                   ))}
                 </div>
               </motion.div>
@@ -120,7 +92,6 @@ export default function CurrentlyLearning() {
       </div>
       <style>{`
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-        @media (max-width: 900px) { .learn-grid { grid-template-columns: repeat(2, 1fr) !important; } }
         @media (max-width: 640px) { .learn-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </section>

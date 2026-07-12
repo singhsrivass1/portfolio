@@ -6,13 +6,13 @@ import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 const ROLES = [
   {
     company: "Independent Project Development",
-    role: "AI/ML Project Development",
+    role: "Building Projects Independently",
     period: "2025 — Present",
     type: "Active",
     bullets: [
-      "Building AI-powered applications emphasizing scalable architectures and machine learning workflows",
-      "Developed end-to-end AI pipelines integrating computer vision, LLMs, and structured data systems",
-      "Built AI/ML projects involving preprocessing, model experimentation, and automation. Learned more from debugging than from writing the first version.",
+      "Started with Python and ML projects, then moved into full-stack and backend development as I wanted to build more complete things.",
+      "Oasis is the most backend-heavy project so far — event-driven, async, with real webhook handling and database persistence.",
+      "Most of what I know about software development came from building these projects and figuring out what broke and why.",
     ],
   },
   {
@@ -21,38 +21,38 @@ const ROLES = [
     period: "2024 — Present",
     type: "Ongoing",
     bullets: [
-      "Solved 200+ problems across LeetCode, HackerRank, and Codeforces",
-      "Focus areas: data structures, dynamic programming, graph algorithms, and system design patterns",
-      "Sharpened instinct for efficient, minimal solutions before reaching for complexity",
+      "Solving problems on LeetCode and Codeforces regularly. Around 400+ problems solved. Mostly focused on graphs and DP right now.",
+      "It has changed how I think about problems in code — not just how to solve something but what the simplest correct version looks like.",
     ],
   },
   {
     company: "Birla Institute of Technology, Mesra",
-    role: "B.Tech Student — AI & Machine Learning",
+    role: "B.Tech — Artificial Intelligence & Machine Learning",
     period: "2024 — 2028",
     type: "Current",
     bullets: [
-      "Maintaining 8.51 CGPA while building real-world projects alongside coursework",
-      "Studying AI/ML foundations: deep learning, NLP, computer vision, and backend system design",
+      "Maintaining 8.51 CGPA while building real projects alongside coursework.",
+      "Studying AI/ML foundations, operating systems, databases, and computer networks. Most of it makes more sense after you have built something that broke.",
     ],
   },
 ];
 
 const SKILLS = [
-  { category: "Languages", items: ["Python", "C++", "C", "SQL", "JavaScript"] },
-  { category: "Backend & APIs", items: ["FastAPI", "REST APIs", "Backend Architecture"] },
-  { category: "AI / ML", items: ["Scikit-learn", "Transformers", "NLP", "Computer Vision", "Pandas", "NumPy"] },
-  { category: "Tools", items: ["Git", "GitHub", "Linux", "VS Code"] },
-  { category: "CS Foundations", items: ["DSA", "OOP","OS","DBMS", "System Design Fundamentals"] },
+  { category: "Languages", items: ["Python", "C++", "C", "SQL", "TypeScript"] },
+  { category: "Frontend", items: ["Next.js", "Tailwind CSS", "Framer Motion"] },
+  { category: "Backend", items: ["FastAPI", "REST APIs", "PostgreSQL", "MongoDB", "Supabase", "Webhooks", "JWT"] },
+  { category: "AI / ML", items: ["Scikit-learn", "NumPy", "Pandas", "Transformers", "Computer Vision", "Prompt Engineering"] },
+  { category: "Dev Tools", items: ["Git", "GitHub", "Docker", "Vercel", "Postman", "GitHub Actions"] },
+  { category: "CS Foundations", items: ["DSA", "OOP", "Operating Systems", "DBMS", "Computer Networks"] },
 ];
 
 export default function Journey() {
   return (
-    <section id="Journey" style={{ padding: "120px 24px", background: "var(--color-bg-subtle)", borderTop: "1px solid var(--color-border)", borderBottom: "1px solid var(--color-border)" }}>
+    <section id="experience" style={{ padding: "120px 24px", background: "var(--color-bg-subtle)", borderTop: "1px solid var(--color-border)", borderBottom: "1px solid var(--color-border)" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce}>
           <motion.p variants={fadeUp} style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--color-accent)", marginBottom: 12 }}>Journey</motion.p>
-          <motion.h2 variants={fadeUp} style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--color-ink)", marginBottom: 64 }}>What I've been doing</motion.h2>
+          <motion.h2 variants={fadeUp} style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--color-ink)", marginBottom: 64 }}>How I got here</motion.h2>
 
           <div style={{ display: "grid", gridTemplateColumns: "3fr 2fr", gap: 80, alignItems: "start" }} className="exp-grid">
             {/* Timeline */}
@@ -76,7 +76,7 @@ export default function Journey() {
                     <ul style={{ margin: "14px 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
                       {role.bullets.map((b) => (
                         <li key={b} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                          <span style={{ color: "var(--color-accent)", marginTop: 6, flexShrink: 0, fontSize: 8 }}>◆</span>
+                          <span style={{ color: "var(--color-border-strong)", marginTop: 6, flexShrink: 0, fontSize: 8 }}>◆</span>
                           <span style={{ fontSize: 13, color: "var(--color-ink-3)", lineHeight: 1.65, letterSpacing: "-0.005em" }}>{b}</span>
                         </li>
                       ))}
@@ -112,17 +112,17 @@ export default function Journey() {
                     <span key={p} style={{ fontSize: 12, fontWeight: 500, color: "var(--color-ink-2)", padding: "6px 12px", borderRadius: "var(--radius-md)", border: "1px solid var(--color-border)", background: "var(--color-bg-subtle)" }}>{p}</span>
                   ))}
                 </div>
-                <p style={{ fontSize: 13, color: "var(--color-ink-3)", marginTop: 12, letterSpacing: "-0.005em" }}>200+ problems solved across all platforms</p>
+                <p style={{ fontSize: 13, color: "var(--color-ink-3)", marginTop: 12, letterSpacing: "-0.005em" }}>400+ problems solved across all platforms</p>
               </div>
 
-              {/* Resume placeholder */}
+              {/* Resume */}
               <a href="https://drive.google.com/file/d/1AJTuIfbveXCT1B5Yvikv7A4HN0nAAXXh/view?usp=drivesdk" target="_blank" rel="noopener noreferrer"
-  style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "14px 24px", borderRadius: "var(--radius-lg)", border: "1px solid var(--color-border)", background: "var(--color-surface)", fontSize: 14, fontWeight: 600, color: "var(--color-ink-2)", letterSpacing: "-0.01em", transition: "all 0.2s ease", boxShadow: "var(--shadow-xs)", textDecoration: "none" }}
-  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--color-bg-subtle)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
-  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--color-surface)"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3M3 12h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-  View Resume
-</a>
+                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "14px 24px", borderRadius: "var(--radius-lg)", border: "1px solid var(--color-border)", background: "var(--color-surface)", fontSize: 14, fontWeight: 600, color: "var(--color-ink-2)", letterSpacing: "-0.01em", transition: "all 0.2s ease", boxShadow: "var(--shadow-xs)", textDecoration: "none" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--color-bg-subtle)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--color-surface)"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3M3 12h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                View Resume
+              </a>
             </motion.div>
           </div>
         </motion.div>

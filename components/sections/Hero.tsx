@@ -29,7 +29,7 @@ export default function Hero() {
 
           <motion.div variants={fadeUp}>
             <p style={{ fontSize: "clamp(15px, 1.8vw, 18px)", fontWeight: 600, color: "var(--color-ink-3)", letterSpacing: "-0.01em" }}>
-              Software Developer · AI/ML · Problem Solver
+              Software Engineer · AI/ML · Backend
             </p>
           </motion.div>
 

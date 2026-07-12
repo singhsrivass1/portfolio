@@ -21,8 +21,7 @@ export default function Contact() {
                 Open to internships, collaborations, and learning opportunities.
               </h2>
               <p style={{ fontSize: 16, color: "var(--color-ink-3)", lineHeight: 1.75, letterSpacing: "-0.01em", maxWidth: 420, marginBottom: 12 }}>
-                I'm open to internships, AI/ML project collaborations, and software engineering opportunities where I can contribute and grow.
-              </p>
+I'm looking for software engineering internships for 2026-27, particularly roles in backend, full-stack, or AI/ML engineering.              </p>
               <p style={{ fontSize: 15, color: "var(--color-ink-4)", lineHeight: 1.7, letterSpacing: "-0.01em", maxWidth: 420, marginBottom: 36 }}>
                 Based in Ranchi, Jharkhand, India, Working remotely.
               </p>

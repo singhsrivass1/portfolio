@@ -5,32 +5,32 @@ import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 
 const STATS = [
   { value: "8.51", label: "CGPA at BIT Mesra" },
-  { value: "200+", label: "DSA problems solved" },
+  { value: "400+", label: "DSA problems solved" },
   { value: "99.4%", label: "Physics percentile, JEE" },
 ];
 
 const TRAITS = [
   {
     icon: <Settings size={20} strokeWidth={1.5} />,
-   title: "I like systems that fail gracefully",
-desc: "When something breaks, I want it to break in a way that is obvious and recoverable. That mindset shapes how I structure projects from the start.",
-},
+    title: "I like knowing why something broke",
+    desc: "Before fixing a bug I want to understand what actually went wrong. Jumping to the solution too fast usually creates a different problem.",
+  },
   {
     icon: <Bot size={20} strokeWidth={1.5} />,
-    title: "Practical AI engineering",
-    desc: "I build AI/ML projects to understand how the pieces fit together. Less about showcasing models, more about figuring out what actually works when real data shows up.",
+    title: "Start simple, add complexity only when needed",
+    desc: "The first version should do one thing correctly. I've learned more from stripping things down than from adding to them.",
   },
   {
     icon: <Target size={20} strokeWidth={1.5} />,
-    title: "Problem-first approach",
-    desc: "Competitive programming sharpened my instinct to reach for the simplest correct solution first. I don't over-engineer.",
+    title: "I learn the most from building complete things",
+    desc: "Reading about something doesn't stick the same way. Shipping a project end-to-end, even a small one, teaches me more than any tutorial.",
   },
 ];
 
 const EDUCATION = [
   {
     school: "Birla Institute of Technology, Mesra",
-    degree: "B.Tech - Artificial Intelligence & Machine Learning",
+    degree: "B.Tech — Artificial Intelligence & Machine Learning",
     period: "2024 — 2028",
     detail: "CGPA: 8.51",
   },
@@ -52,14 +52,17 @@ export default function About() {
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }} className="about-grid">
 
-            {/* Left — bio + stats + education */}
+            {/* Left */}
             <motion.div variants={fadeUp} style={{ display: "flex", flexDirection: "column", gap: 28 }}>
               <h2 style={{ fontSize: "clamp(28px, 3.5vw, 48px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.12, color: "var(--color-ink)" }}>
-Third-year AI/ML student who learns best by building things.              </h2>
+                Third-year AI/ML student who learns best by building things.
+              </h2>
               <p style={{ fontSize: 16, color: "var(--color-ink-3)", lineHeight: 1.78, letterSpacing: "-0.01em" }}>
-I'm a B.Tech student in AI/ML at BIT Mesra. I got into programming because I liked breaking problems into smaller parts and figuring out why things work. That curiosity pushed me toward machine learning, where the problems are rarely clean and the debugging is never obvious.              </p>
+                I'm a B.Tech student in AI/ML at BIT Mesra. I got into programming because I liked breaking problems into smaller parts and figuring out why things work. That curiosity pushed me toward machine learning, where the problems are rarely clean and the debugging is never obvious.
+              </p>
               <p style={{ fontSize: 16, color: "var(--color-ink-3)", lineHeight: 1.78, letterSpacing: "-0.01em" }}>
-Right now I am focused on DSA, applied ML, and building small but complete projects. I like taking something from a rough idea to something that actually runs. Outside class I solve problems on LeetCode and Codeforces, mostly to get better at thinking clearly under constraints.              </p>
+                Right now I am focused on DSA, applied ML, and building small but complete projects. I like taking something from a rough idea to something that actually runs. Outside class I solve problems on LeetCode and Codeforces, mostly to get better at thinking clearly under constraints.
+              </p>
 
               {/* Stats */}
               <div style={{ display: "flex", gap: 32, paddingTop: 4, flexWrap: "wrap" }}>
@@ -98,7 +101,8 @@ Right now I am focused on DSA, applied ML, and building small but complete proje
                   style={{ padding: "24px", borderRadius: "var(--radius-lg)", background: "var(--color-surface)", border: "1px solid var(--color-border)", boxShadow: "var(--shadow-xs)", cursor: "default" }}
                   whileHover={{ y: -2, boxShadow: "var(--shadow-md)" }}>
                   <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-<span style={{ flexShrink: 0, marginTop: 1, color: "var(--color-ink-3)" }}>{t.icon}</span>                    <div>
+                    <span style={{ flexShrink: 0, marginTop: 1, color: "var(--color-ink-3)" }}>{t.icon}</span>
+                    <div>
                       <p style={{ fontSize: 15, fontWeight: 600, color: "var(--color-ink)", letterSpacing: "-0.01em", marginBottom: 6 }}>{t.title}</p>
                       <p style={{ fontSize: 14, color: "var(--color-ink-3)", lineHeight: 1.65, letterSpacing: "-0.005em" }}>{t.desc}</p>
                     </div>
@@ -106,15 +110,15 @@ Right now I am focused on DSA, applied ML, and building small but complete proje
                 </motion.div>
               ))}
 
-              {/* Achievements card */}
+              {/* Highlights card */}
               <motion.div variants={fadeUp}
                 style={{ padding: "24px", borderRadius: "var(--radius-lg)", background: "var(--color-accent-soft)", border: "1px solid var(--color-accent-muted)", cursor: "default" }}>
                 <p style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--color-accent)", marginBottom: 14 }}>Highlights</p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   {[
-                    "99.4 percentile in Physics — JEE Main 2024",
-                    "200+ problems solved on LeetCode, HackerRank & Codeforces",
-                    "Built AI/ML projects using LLMs, Computer Vision, and NLP workflows",
+                    "99.4 percentile in Physics in JEE Main 2024",
+                    "400+ problems solved on LeetCode, HackerRank & Codeforces",
+                    "Built Oasis, Kajal Cartel, and Krafti, each one taught me something different",
                   ].map((a) => (
                     <div key={a} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                       <span style={{ color: "var(--color-accent)", flexShrink: 0, marginTop: 5, fontSize: 8 }}>◆</span>
