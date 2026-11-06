@@ -112,7 +112,7 @@ export const projects: Project[] = [
       { label: "Code", href: "https://github.com/singhsrivass1/Kajal-Cartel" },
     ],
     repo: "https://github.com/singhsrivass1/Kajal-Cartel",
-    caseStudy: { href: "/work/kajal-cartel", ready: false },
+    caseStudy: { href: "/work/kajal-cartel", ready: true },
     figure: {
       src: kajalBooking,
       alt: "Kajal Cartel booking panel: a selected bridal look at 75,000 rupees, three bridesmaids with a 10 percent party discount, and a date and time picker.",
@@ -158,3 +158,10 @@ export const projects: Project[] = [
 
 export const featured = projects.filter((p) => p.tier === "feature");
 export const brief = projects.filter((p) => p.tier === "brief");
+
+/** A project by slug. Throws at build time if the slug is wrong. */
+export function getProject(slug: string): Project {
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) throw new Error(`Unknown project: ${slug}`);
+  return project;
+}

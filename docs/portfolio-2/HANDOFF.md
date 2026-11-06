@@ -110,7 +110,18 @@ severity not checked against the five values). The dashboard is Flutter web.
 
 ## Stage 3: Kajal Cartel case study (`/work/kajal-cartel`), board 8
 
-Publishable now; set `caseStudy.ready = true` when built.
+Done: `app/work/kajal-cartel/page.tsx`, with shared case-study parts in
+`components/case/` and `lib/metadata.ts`. `caseStudy.ready` is `true`.
+Every passage names its files (checked against Kajal-Cartel `main`,
+commit cf27762). Two corrections to the brief below, both checked in code:
+
+- Rate limits: 12 customer and sign-in routes call the limiter directly,
+  and all 9 admin routes are limited through `withAdmin`
+  (`src/lib/api/adminRoute.ts`). The page says that, not "12 routes".
+- The Kajal Cartel code will not be changed, so the page states the
+  concurrency gap and does not promise a fix.
+
+Original brief:
 
 - Disclosure note at the top (demonstration data, AI-generated imagery).
 - Match, price, book: three-model Gemini fallback, matches outside the

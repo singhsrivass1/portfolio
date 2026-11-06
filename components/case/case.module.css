@@ -1,0 +1,560 @@
+/*
+ * Case-study layout. Same system as the homepage: tokens from globals.css,
+ * `.section` rules, Newsreader titles, IBM Plex text, 1 px ink figure frames
+ * with mono captions. Nothing rounded, no shadows, no gradients.
+ */
+
+/* Header */
+.head {
+  padding-top: var(--s-9);
+  align-items: end;
+}
+
+.kicker {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.6em;
+  margin: 0 0 var(--s-6);
+  color: var(--muted);
+}
+
+.kicker > * {
+  white-space: nowrap;
+}
+
+.kicker > * + *::before {
+  content: "· ";
+}
+
+.kicker a {
+  display: inline-block;
+  padding: 4px 0 2px;
+  border-bottom: 1px solid currentColor;
+}
+
+.title {
+  grid-column: 1 / span 8;
+  margin: 0;
+  font-size: 104px;
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.lede {
+  grid-column: 1 / span 8;
+  margin: var(--s-5) 0 0;
+  font-size: 28px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.facts {
+  grid-column: 10 / span 3;
+  grid-row: 2 / span 2;
+  align-self: end;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--s-4);
+  row-gap: 6px;
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.facts dt {
+  text-transform: uppercase;
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.factLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+/* Inline links stay at least 24 px tall. */
+.factLinks a {
+  padding: 3px 0 2px;
+}
+
+/* Disclosure note: a ruled box, ink on inset. */
+.disclosure {
+  margin-top: var(--s-7);
+  padding: var(--s-4) var(--s-5);
+  border: 1px solid var(--ink);
+  background: var(--inset);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.disclosure p {
+  margin: 0;
+  max-width: 880px;
+}
+
+.disclosure p + p {
+  margin-top: var(--s-2);
+}
+
+.disclosure .label {
+  margin-bottom: var(--s-2);
+  color: var(--ink);
+}
+
+
+/* Body: contents rail and sections */
+.body {
+  align-items: start;
+}
+
+.rail {
+  grid-column: 1 / span 3;
+  align-self: start;
+  position: sticky;
+  top: var(--s-6);
+  margin-top: var(--s-7);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--ink);
+}
+
+.rail ol {
+  list-style: none;
+  margin: var(--s-4) 0 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.rail li + li {
+  margin-top: var(--s-1);
+}
+
+.rail a {
+  display: flex;
+  gap: var(--s-3);
+  padding: 6px 0;
+  color: var(--ink-2);
+}
+
+.rail a:hover {
+  color: var(--oxide);
+}
+
+.railNo {
+  min-width: 1.5em;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.content {
+  grid-column: 4 / span 9;
+  min-width: 0;
+}
+
+/* Sections: the shared `.section` rule, with a tighter gap for long reads. */
+.content > :global(.section) {
+  margin-top: var(--s-9);
+  scroll-margin-top: var(--s-5);
+}
+
+.secNo {
+  margin-right: 0.6em;
+  color: var(--oxide);
+}
+
+.h2 {
+  margin: 0;
+}
+
+.statement {
+  max-width: 760px;
+  margin: var(--s-5) 0 0;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.h3 {
+  margin: var(--s-7) 0 0;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.prose {
+  max-width: 660px;
+  color: var(--ink-2);
+}
+
+.prose p {
+  margin: var(--s-4) 0 0;
+}
+
+.prose ul,
+.prose ol {
+  margin: var(--s-4) 0 0;
+  padding-left: 1.2em;
+}
+
+/* Tailwind's preflight removes list markers; prose lists keep theirs. */
+.prose ul {
+  list-style: square;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li::marker {
+  color: var(--muted);
+}
+
+.prose li + li {
+  margin-top: var(--s-2);
+}
+
+.prose strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.prose code,
+.code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  padding: 1px 4px;
+  background: var(--inset);
+  overflow-wrap: anywhere;
+}
+
+/* Source note: the files a passage describes. */
+.source {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--s-4);
+  row-gap: 2px;
+  max-width: 660px;
+  margin: var(--s-4) 0 0;
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--rule);
+  overflow-wrap: anywhere;
+}
+
+.source span {
+  text-transform: uppercase;
+}
+
+.source a {
+  color: var(--muted);
+  padding: 4px 0;
+}
+
+.source a:hover {
+  color: var(--oxide);
+}
+
+/* Figures: 1 px ink frame, inset well, mono caption. */
+.figure {
+  margin: var(--s-6) 0 0;
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  background: var(--inset);
+}
+
+.cropped {
+  aspect-ratio: var(--aspect);
+}
+
+.cropped .img {
+  object-fit: cover;
+  object-position: var(--pos);
+}
+
+.natural .img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.smallOnly {
+  display: none;
+}
+
+/* Caption in the margin: the frame takes two thirds, the caption sits at its foot. */
+.side {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  column-gap: var(--gutter);
+  align-items: end;
+}
+
+.side .caption {
+  margin-top: 0;
+}
+
+/* The first figure opens the content column, level with the rail. */
+.figure.leadFigure {
+  margin-top: var(--s-7);
+}
+
+.caption {
+  margin-top: var(--s-2);
+  max-width: 760px;
+}
+
+/* Tables: ink header rule, hairline rows, mono column labels. */
+.table {
+  width: 100%;
+  margin-top: var(--s-6);
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.table caption {
+  caption-side: bottom;
+  padding-top: var(--s-2);
+  text-align: left;
+}
+
+.table th {
+  padding: 0 var(--s-4) var(--s-3) 0;
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--muted);
+  vertical-align: bottom;
+}
+
+.table td,
+.table tbody th {
+  padding: var(--s-4) var(--s-4) var(--s-4) 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  color: var(--ink-2);
+}
+
+.table tbody th {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+}
+
+.table td:last-child,
+.table th:last-child {
+  padding-right: 0;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .title {
+    grid-column: 1 / -1;
+    font-size: 80px;
+  }
+
+  .lede {
+    grid-column: 1 / -1;
+    font-size: 24px;
+  }
+
+  .facts {
+    grid-column: 1 / span 6;
+    grid-row: auto;
+    margin-top: var(--s-6);
+  }
+
+  .rail {
+    grid-column: 1 / -1;
+    position: static;
+    margin-top: var(--s-8);
+  }
+
+  .rail ol {
+    columns: 2;
+    column-gap: var(--gutter);
+  }
+
+  .rail li {
+    break-inside: avoid;
+  }
+
+  .content {
+    grid-column: 1 / -1;
+  }
+
+  .side {
+    display: block;
+  }
+
+  .side .caption {
+    margin-top: var(--s-2);
+  }
+
+  .content > :global(.section) {
+    margin-top: var(--s-8);
+  }
+
+  .statement {
+    font-size: 28px;
+  }
+}
+
+/* Phone */
+@media (max-width: 639px) {
+  .head {
+    padding-top: 44px;
+  }
+
+  .kicker {
+    margin-bottom: var(--s-4);
+  }
+
+  .title {
+    font-size: 52px;
+    line-height: 1;
+  }
+
+  .lede {
+    margin-top: var(--s-4);
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .facts {
+    grid-column: 1 / -1;
+  }
+
+  .disclosure {
+    margin-top: var(--s-6);
+    padding: var(--s-4);
+  }
+
+  .figure.leadFigure {
+    margin-top: var(--s-6);
+  }
+
+  .rail ol {
+    columns: 1;
+  }
+
+  .rail a {
+    min-height: 44px;
+    align-items: center;
+    padding: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .rail li + li {
+    margin-top: 0;
+  }
+
+  .railNo {
+    line-height: 1;
+  }
+
+  .content > :global(.section) {
+    margin-top: var(--s-8);
+  }
+
+  .statement {
+    font-size: 24px;
+  }
+
+  .h3 {
+    margin-top: var(--s-6);
+    font-size: 24px;
+  }
+
+  .figure {
+    margin-top: var(--s-5);
+  }
+
+  /* Phones show the tighter crop at its own proportions. */
+  .largeOnly {
+    display: none;
+  }
+
+  .smallOnly {
+    display: block;
+  }
+
+  /* Each table row becomes a labelled block. */
+  .table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .table caption {
+    display: block;
+    order: 1;
+  }
+
+  .table tbody,
+  .table tr,
+  .table td,
+  .table tbody th {
+    display: block;
+    width: auto;
+  }
+
+  .table tr {
+    padding: var(--s-4) 0;
+    border-top: 1px solid var(--ink);
+  }
+
+  .table td,
+  .table tbody th {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: var(--s-3);
+    padding: 6px 0;
+    border: 0;
+  }
+
+  .table td::before,
+  .table tbody th::before {
+    content: attr(data-label);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+}
