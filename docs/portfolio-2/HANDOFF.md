@@ -153,14 +153,30 @@ Original brief:
 
 ## Stage 4 onward
 
-- Responsive pass on case studies; contents rail sticky from 1024 px.
-- SEO: `app/sitemap.ts`, `app/robots.ts`, Person JSON-LD on `/`, redesigned
-  `app/opengraph-image.tsx` (no pills, no indigo), per-page metadata.
+Done:
+
+- Responsive pass on both case studies at 390, 834 and 1440 px; contents
+  rail sticky from 1024 px, a plain list above the sections below that.
+- SEO: `app/sitemap.ts` (`/`, `/work` and each case study whose
+  `caseStudy.ready` is `true`), `app/robots.ts`, Person JSON-LD on `/`
+  (name, url, `sameAs` from `site.profiles`, `alumniOf` BIT Mesra), and
+  per-page metadata through `pageMetadata()` in `lib/metadata.ts`.
+- `app/opengraph-image.tsx` redesigned: paper ground, ink type, a 1 px ink
+  rule, the name and "I build backend systems and AI-powered products."
+  No pills, no indigo, no accent. It runs on the default Node.js runtime
+  (the old `edge` export stopped static generation) and is built once at
+  build time. Newsreader and IBM Plex come from the Google Fonts CSS API as
+  TrueType subsets, because `ImageResponse` cannot read the WOFF2 files
+  `next/font` ships; if that fetch fails, the image falls back to the
+  default sans rather than failing the build.
+
+Still to do:
+
 - Host the final résumé at `public/resume.pdf` and set `site.resumeUrl` to
-  `/resume.pdf`.
+  `/resume.pdf` (Srivass will provide the PDF).
 - README rewrite.
-- QA: build, lint, types, Lighthouse, axe, link check, screenshots against
-  the boards. Then ask before deploying.
+- QA: Lighthouse, axe, link check, screenshots against the boards. Then
+  ask before deploying to production.
 
 ## Open items
 

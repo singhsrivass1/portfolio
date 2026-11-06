@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
+import { pageMetadata } from "@/lib/metadata";
 import { projects, type Project } from "@/lib/projects";
 
 import styles from "./work.module.css";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Work",
   description:
     "A GitHub security reviewer, a bridal booking marketplace, a document question-answering system and a hackathon listing generator.",
-  alternates: { canonical: "/work" },
-};
+  path: "/work",
+});
 
 function ProjectName({ project }: { project: Project }) {
   const className = `serif ${styles.name}`;

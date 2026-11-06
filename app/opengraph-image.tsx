@@ -1,11 +1,58 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
-export const alt = "Srivass - Software Engineer & AI/ML Developer";
-export const size = { width: 1200, height: 630 };
+import { shareImage } from "@/lib/metadata";
+import { site } from "@/lib/site";
+
+/*
+ * The site's share image, in the site's own style: paper ground, ink type,
+ * a 1 px ink rule, Newsreader for the line and IBM Plex for the name.
+ * No accent, no pills, nothing rounded. Generated once, at build time.
+ */
+
+export const alt = shareImage.alt;
+export const size = { width: shareImage.width, height: shareImage.height };
 export const contentType = "image/png";
 
+const PAPER = "#f3f0e8";
+const INK = "#16140f";
+const MUTED = "#645f55";
+
+const NAME = site.name;
+const LINES = ["I build backend systems and", "AI-powered products."];
+const DOMAIN = new URL(site.url).host;
+
+/**
+ * A TrueType subset of a Google font holding only the glyphs in `text`.
+ * ImageResponse reads TTF or OTF, and next/font only ships WOFF2, so this
+ * asks the Google Fonts CSS API directly. Returns null on any failure; the
+ * image then falls back to the default sans instead of failing the build.
+ */
+async function googleFont(family: string, text: string): Promise<ArrayBuffer | null> {
+  try {
+    const cssUrl = `https://fonts.googleapis.com/css2?family=${family}&text=${encodeURIComponent(text)}`;
+    const css = await (await fetch(cssUrl)).text();
+    const fontUrl = css.match(/src: url\((.+?)\) format\('(?:opentype|truetype)'\)/)?.[1];
+    if (!fontUrl) return null;
+    const response = await fetch(fontUrl);
+    return response.ok ? await response.arrayBuffer() : null;
+  } catch {
+    return null;
+  }
+}
+
 export default async function Image() {
+  const [serif, sans, mono] = await Promise.all([
+    googleFont("Newsreader:opsz,wght@72,300", LINES.join(" ")),
+    googleFont("IBM+Plex+Sans:wght@500", NAME),
+    googleFont("IBM+Plex+Mono:wght@400", DOMAIN),
+  ]);
+
+  const fonts = [
+    serif && { name: "Newsreader", data: serif, weight: 300 as const, style: "normal" as const },
+    sans && { name: "Plex Sans", data: sans, weight: 500 as const, style: "normal" as const },
+    mono && { name: "Plex Mono", data: mono, weight: 400 as const, style: "normal" as const },
+  ].filter((font) => font !== null);
+
   return new ImageResponse(
     (
       <div
@@ -14,68 +61,45 @@ export default async function Image() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          padding: "80px",
-          background: "#FAFAF8",
-          fontFamily: "sans-serif",
-          position: "relative",
+          justifyContent: "space-between",
+          padding: "64px 80px 76px",
+          background: PAPER,
+          color: INK,
         }}
       >
-        {/* Subtle top border accent */}
-        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "#4F46E5", display: "flex" }} />
-
-        {/* Availability badge */}
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          marginBottom: 32,
-        }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22c55e", display: "flex" }} />
-          <span style={{ fontSize: 14, fontWeight: 600, color: "#4F46E5", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-            Open to internships
-          </span>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "baseline",
+            paddingTop: 22,
+            borderTop: `1px solid ${INK}`,
+          }}
+        >
+          <div style={{ display: "flex", fontFamily: "Plex Sans", fontSize: 30, fontWeight: 500 }}>{NAME}</div>
+          <div style={{ display: "flex", fontFamily: "Plex Mono", fontSize: 22, color: MUTED, letterSpacing: "0.02em" }}>
+            {DOMAIN}
+          </div>
         </div>
-
-        {/* Name */}
-        <div style={{ fontSize: 80, fontWeight: 700, color: "#18181A", letterSpacing: "-0.04em", lineHeight: 1, marginBottom: 16, display: "flex" }}>
-          Srivass Kumar
-        </div>
-
-        {/* Role */}
-        <div style={{ fontSize: 24, fontWeight: 500, color: "#6B6B6F", letterSpacing: "-0.01em", marginBottom: 40, display: "flex" }}>
-          Software Engineer · AI/ML · Backend
-        </div>
-
-        {/* Chips */}
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-          {["Python", "FastAPI", "Next.js", "Machine Learning", "Computer Vision"].map((chip) => (
-            <div key={chip} style={{
-              fontSize: 14,
-              fontWeight: 500,
-              color: "#3A3A3C",
-              padding: "6px 16px",
-              borderRadius: 999,
-              border: "1px solid #E5E4E0",
-              background: "#FFFFFF",
-              display: "flex",
-            }}>
-              {chip}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            fontFamily: "Newsreader",
+            fontSize: 84,
+            fontWeight: 300,
+            lineHeight: 1.08,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          {LINES.map((line) => (
+            <div key={line} style={{ display: "flex" }}>
+              {line}
             </div>
           ))}
         </div>
-
-        {/* Bottom: URL */}
-        <div style={{ position: "absolute", bottom: 48, left: 80, fontSize: 14, color: "#9A9A9E", letterSpacing: "0.02em", display: "flex" }}>
-          srivxdev.vercel.app
-        </div>
-
-        {/* Bottom right: BIT Mesra */}
-        <div style={{ position: "absolute", bottom: 48, right: 80, fontSize: 14, color: "#9A9A9E", letterSpacing: "0.02em", display: "flex" }}>
-          BIT Mesra · 2024-2028
-        </div>
       </div>
     ),
-    { ...size }
+    { ...size, fonts },
   );
 }
