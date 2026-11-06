@@ -62,8 +62,11 @@ export default function WorkPage() {
                   {p.number}
                 </td>
                 <td data-label="Project">
-                  <ProjectName project={p} />
-                  <span className={styles.short}>{p.short}</span>
+                  {/* One wrapper, so the phone layout's label grid sees one value. */}
+                  <div>
+                    <ProjectName project={p} />
+                    <span className={styles.short}>{p.short}</span>
+                  </div>
                 </td>
                 <td data-label="My role">{p.role}</td>
                 <td data-label="Built with">{p.stack.join(", ")}</td>

@@ -71,26 +71,22 @@ Verified in the cloud workspace (Next.js was not installable there):
 - Phone menu, using the real `Header` component: opens, focus moves in, page
   scroll locks, Tab wraps, Escape closes and returns focus to "Menu".
 
-Not verified yet. Do this first:
+Verified locally with the real Next.js 16.2.6 (Windows, 6 November 2026):
 
-```bash
-git switch main && git pull
-git switch -c portfolio-2/stage-1
-git am path/to/portfolio-2-stage-1.patch
-npm install
-npm run lint
-npx tsc --noEmit
-npm run build
-npm run dev   # then check / and /work at desktop, tablet and phone widths
-```
-
-Likely first-build issues to watch:
-
-- `Newsreader({ axes: ["opsz"] })`: if `next/font` rejects the axis, remove
-  `axes`; the type still works, just without optical sizing.
-- `framer-motion`, `lucide-react` and `geist` are no longer imported. Remove
-  them with `npm uninstall framer-motion lucide-react geist` so the lockfile
-  updates.
+- `npm run lint`, `npm run build` and `npx tsc --noEmit` all pass.
+  `Newsreader({ axes: ["opsz"] })` is accepted by `next/font`.
+- `framer-motion`, `lucide-react` and `geist` uninstalled (none imported).
+- `Header`: the `react-hooks/set-state-in-effect` lint error is fixed by
+  storing the pathname the menu was opened on (`openOn`); the menu counts as
+  open only on that pathname, so navigation closes it without an effect.
+- In Chrome, `/` and `/work` at 390, 834 and 1440 px: no horizontal scroll,
+  one `h1`, no dash characters, all images load. Phone menu opens, moves
+  focus in, locks scroll, wraps Tab both ways, closes on Escape with focus
+  back on "Menu", and closes after navigating. Skip link shows on first Tab.
+- Fixed on `/work` under 768 px: the table caption shrank to a narrow
+  column and the project description fell into the label column. The table
+  is now a flex column with the caption last, and the project cell has one
+  wrapper.
 
 ## Stage 2: Oasis case study (`/work/oasis`), board 7
 

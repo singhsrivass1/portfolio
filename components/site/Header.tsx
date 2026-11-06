@@ -15,12 +15,16 @@ function isCurrent(pathname: string, href: string) {
 
 export default function Header() {
   const pathname = usePathname() ?? "/";
-  const [open, setOpen] = useState(false);
+  // The menu is open only on the page where it was opened, so a client-side
+  // navigation closes it without an effect.
+  const [openOn, setOpenOn] = useState<string | null>(null);
+  const open = openOn === pathname;
+  const setOpen = (value: boolean) => setOpenOn(value ? pathname : null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const close = useCallback(() => {
-    setOpen(false);
+    setOpenOn(null);
     toggleRef.current?.focus();
   }, []);
 
@@ -59,11 +63,6 @@ export default function Header() {
       document.body.style.overflow = previousOverflow;
     };
   }, [open, close]);
-
-  // Close the menu after client-side navigation.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
     <header className="wrap">

@@ -144,6 +144,17 @@
     width: auto;
   }
 
+  /* As a flex column the table keeps its caption full width and last. */
+  .table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .caption {
+    display: block;
+    order: 1;
+  }
+
   .table tr {
     padding: var(--s-5) 0;
     border-top: 1px solid var(--ink);
