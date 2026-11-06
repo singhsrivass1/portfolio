@@ -1,0 +1,360 @@
+/*
+ * Oasis case study: system flows and the finding lifecycle.
+ * Ink boxes and hairline arrows; oxide marks the steps a person takes.
+ */
+
+/* System flows: boxes joined by arrows, in a row from 1024 px, stacked below. */
+.flow {
+  --arrow: var(--s-6);
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: var(--arrow);
+  margin: var(--s-5) 0 0;
+  padding: 0;
+}
+
+.node {
+  position: relative;
+  padding: var(--s-3);
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+/* The connector: a hairline into this box with a chevron at its tip. */
+.node + .node::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  width: var(--arrow);
+  height: 1px;
+  background: var(--ink);
+}
+
+.node + .node::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 4px);
+  right: calc(100% + 2px);
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid var(--ink);
+  border-right: 1px solid var(--ink);
+  transform: rotate(45deg);
+}
+
+.nodeKicker {
+  display: block;
+  margin-bottom: var(--s-1);
+  color: var(--muted);
+}
+
+.nodeTitle {
+  display: block;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.nodeDetail {
+  display: block;
+  margin-top: var(--s-1);
+}
+
+/* A step a person takes. */
+.person {
+  border-color: var(--oxide);
+}
+
+.person .nodeKicker {
+  color: var(--oxide);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin: var(--s-4) 0 0;
+}
+
+.legendSwatch {
+  width: 14px;
+  height: 10px;
+  border: 1px solid var(--oxide);
+}
+
+/* Lifecycle: state tabs and a detail panel. */
+.lifecycle {
+  margin-top: var(--s-6);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+}
+
+.chip {
+  min-height: 40px;
+  padding: 0 var(--s-3);
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color var(--fast) var(--ease), color var(--fast) var(--ease);
+}
+
+.chip:hover {
+  background: var(--inset);
+}
+
+.chip.person {
+  border-color: var(--oxide);
+}
+
+.chip[aria-selected="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.chip.person[aria-selected="true"] {
+  background: var(--oxide);
+  border-color: var(--oxide);
+}
+
+.chipArrow {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.chipGap {
+  margin-left: var(--s-4);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.panel {
+  margin-top: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border: 1px solid var(--ink);
+  background: var(--inset);
+}
+
+.panelTitle {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.panelList {
+  display: grid;
+  grid-template-columns: 9em minmax(0, 1fr);
+  column-gap: var(--s-4);
+  row-gap: var(--s-3);
+  margin: var(--s-4) 0 0;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.panelList dt {
+  padding-top: 3px;
+  text-transform: uppercase;
+}
+
+.panelList dd {
+  margin: 0;
+  color: var(--ink-2);
+}
+
+.actorPerson {
+  color: var(--oxide);
+  font-weight: 500;
+}
+
+.nextList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.nextButton {
+  min-height: 32px;
+  padding: 0 var(--s-2);
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.nextButton:hover {
+  color: var(--oxide);
+  border-color: var(--oxide);
+}
+
+.files {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--s-4);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.files a {
+  padding: 3px 0;
+  border-bottom: 1px solid currentColor;
+}
+
+/* Approval-gated fix flow: six numbered steps. */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  margin: var(--s-5) 0 0;
+  padding: 0;
+  max-width: 760px;
+}
+
+.step {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 2.5em minmax(0, 1fr) auto;
+  column-gap: var(--s-3);
+  align-items: baseline;
+  padding: var(--s-3) 0;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-2);
+}
+
+.step:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.step::before {
+  content: counter(step);
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.stepActor {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.step.personStep::before,
+.step.personStep .stepActor {
+  color: var(--oxide);
+}
+
+/* Evidence: numbers set like the homepage's. */
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--s-6);
+  margin: var(--s-6) 0 0;
+}
+
+.numbers div {
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--ink);
+}
+
+.numbers dt {
+  font-size: 56px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.numbers dd {
+  margin: var(--s-3) 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+/* Tablet and phone: flows stack, arrows point down. */
+@media (max-width: 1023px) {
+  .flow {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--arrow);
+    max-width: 520px;
+  }
+
+  .node + .node::before {
+    top: auto;
+    right: auto;
+    bottom: 100%;
+    left: var(--s-5);
+    width: 1px;
+    height: var(--arrow);
+  }
+
+  .node + .node::after {
+    top: auto;
+    right: auto;
+    bottom: calc(100% + 2px);
+    left: calc(var(--s-5) - 4px);
+    transform: rotate(135deg);
+  }
+}
+
+@media (max-width: 639px) {
+  .chip {
+    min-height: 44px;
+  }
+
+  .chipGap {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+
+  .panel {
+    padding: var(--s-4);
+  }
+
+  .panelList {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--s-1);
+  }
+
+  .panelList dd + dt {
+    margin-top: var(--s-3);
+  }
+
+  .nextButton {
+    min-height: 44px;
+  }
+
+  .step {
+    grid-template-columns: 2em minmax(0, 1fr);
+  }
+
+  .stepActor {
+    grid-column: 2;
+    margin-top: var(--s-1);
+  }
+
+  .numbers {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--s-5);
+  }
+
+  .numbers dt {
+    font-size: 44px;
+  }
+}

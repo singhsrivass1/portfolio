@@ -55,9 +55,9 @@ Built:
   `components/ui/AIVisual.tsx`, `lib/motion.ts`, `app/api/leetcode` (unused,
   and its fallback returned invented numbers).
 
-Case-study links are gated: `caseStudy.ready` is `false` for Oasis and Kajal
-Cartel, so the homepage and index link to the code until each case study is
-published.
+Case-study links are gated by `caseStudy.ready` in `lib/projects.ts`. While
+it is `false`, the homepage and index link to the code instead. It is now
+`true` for both Oasis and Kajal Cartel (Stages 2 and 3).
 
 Verified in the cloud workspace (Next.js was not installable there):
 
@@ -90,23 +90,36 @@ Verified locally with the real Next.js 16.2.6 (Windows, 6 November 2026):
 
 ## Stage 2: Oasis case study (`/work/oasis`), board 7
 
-Publish only when all of these hold, then set `caseStudy.ready = true`:
+Decision change (6 November 2026): the Oasis and Kajal Cartel codebases will
+not be modified. The earlier publish conditions (webhook signature patch,
+a passing `pytest` run pasted into the page, a Render redeploy, a replaced
+finding screenshot) are dropped. The case study describes the code as it is
+today, using only the facts below, which were checked in `oasis_backend`
+(5affe31) and `oasis_frontend` (53ea098) on `main`.
 
-- [ ] Webhook signature patch merged in `oasis_backend` (missing secret 503,
-      missing or bad signature 401, constant-time comparison kept).
-- [ ] Full backend `pytest` run passes; paste its last line into section 5.
-- [ ] Deployed to Render; a request with no signature now returns 401
-      (before the fix it returned 200).
-- [ ] The finding screenshot replaced with a real parameterised-query patch,
-      or the figure dropped. The current one builds a string instead.
+Done: `app/work/oasis/page.tsx`, with `Lifecycle.tsx` (client component),
+`SystemFlow.tsx` and `oasis.module.css` beside it. `caseStudy.ready` is
+`true`.
 
-Content and layout: board 7. Sections: Problem, System (two flows drawn),
-Lifecycle (client component: state chips with detail panel, transition table
-from `ALLOWED_TRANSITIONS`, approval-gated fix flow), Decisions (each with its
-file), Evidence (16 endpoints under `/api/v1`; backend test count after the
-patch, 64 functions in 12 files; 17 dashboard test files), Limits (inline
-webhook processing with no queue or retry; one finding per pull request;
-severity not checked against the five values). The dashboard is Flutter web.
+- Lede: "A GitHub App that reviews pull requests for security problems,
+  proposes a patch, and waits for a person before it changes anything."
+- Facts: 2026; built alone; backend Python, FastAPI, Pydantic, PostgreSQL on
+  Supabase; integrations GitHub App API, Gemini; dashboard Flutter web.
+- Fig. 1 `oasis-overview.webp`; Fig. 2 `oasis-reviews.webp` with the phone
+  crop `oasis-reviews-phone.webp`.
+- Sections: Problem; System (intake and decision flows drawn in HTML and
+  CSS, the two person steps in oxide); Lifecycle (state tabs with a detail
+  panel, the `ALLOWED_TRANSITIONS` table, the six-step approval-gated fix);
+  Decisions (structured model reply, server-side state machine, two install
+  paths, no merge path, each with its file); Evidence; Limits.
+- Evidence: 16 endpoints under `/api/v1` plus health and the webhook; 57
+  backend test functions in 12 files, run against an in-memory database
+  fake; 17 test files in the Flutter dashboard. The page does not say the
+  tests pass: no run was recorded.
+- Limits: webhooks handled inside the request with async I/O, no queue and
+  no retry; one finding per pull request; the model's severity is not
+  checked against the five allowed values before it is stored.
+- Webhook signatures are not mentioned anywhere on the page.
 
 ## Stage 3: Kajal Cartel case study (`/work/kajal-cartel`), board 8
 
@@ -155,4 +168,5 @@ Original brief:
   what. Keep it a credited team entry with no metrics and no case study.
 - Smart Financial Agent: no repository found; needs a link before review.
 - IEEE contest: name and year unconfirmed; keep unpublished.
-- Kajal Cartel concurrency fix: optional, separate from the portfolio.
+- Kajal Cartel concurrency gap and Oasis webhook signatures: the codebases
+  will not be changed, so neither is planned work for the portfolio.

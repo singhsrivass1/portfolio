@@ -81,9 +81,7 @@ export const projects: Project[] = [
       { label: "Dashboard code", href: "https://github.com/singhsrivass1/oasis_frontend" },
     ],
     repo: "https://github.com/singhsrivass1/oasis_backend",
-    // Not ready: the webhook signature fix must be merged, tested and
-    // deployed, and the finding screenshot replaced, before publishing.
-    caseStudy: { href: "/work/oasis", ready: false },
+    caseStudy: { href: "/work/oasis", ready: true },
     figure: {
       src: oasisReviews,
       alt: "Oasis reviews list. Pull request 1, Create qwe.py, approved with high severity. Pull request 2, titled Oasis fix: Direct SQL concatenation leads to injection, opened by the Oasis bot and still open.",
