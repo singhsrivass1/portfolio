@@ -1,0 +1,92 @@
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  min-height: 72px;
+}
+
+/* The rule sits inside the content column, like every section rule. */
+.rule {
+  border-bottom: 1px solid var(--rule);
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.desktop {
+  display: flex;
+  gap: var(--s-6);
+  font-size: 14px;
+}
+
+.current {
+  color: var(--oxide);
+  border-bottom: 1px solid var(--oxide);
+  padding-bottom: 2px;
+}
+
+.toggle {
+  display: none;
+  min-height: 44px;
+  padding: 0 0 0 var(--s-4);
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.toggle:hover {
+  color: var(--oxide);
+}
+
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow-y: auto;
+  background: var(--paper);
+}
+
+.sheetBar {
+  border-bottom: 1px solid var(--rule);
+}
+
+.sheetNav {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--s-3);
+  padding-bottom: var(--s-7);
+}
+
+.sheetLink {
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.sheetProfiles {
+  margin: var(--s-5) 0 0;
+}
+
+@media (max-width: 639px) {
+  .bar {
+    min-height: 60px;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .toggle {
+    display: block;
+  }
+}

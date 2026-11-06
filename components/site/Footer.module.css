@@ -1,0 +1,104 @@
+.footer {
+  margin-top: var(--project-gap);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.inner {
+  padding: var(--s-6) 0;
+  border-top: 1px solid var(--ink);
+}
+
+.top {
+  align-items: start;
+}
+
+.who {
+  grid-column: 1 / span 4;
+}
+
+.name {
+  margin: 0;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.place {
+  margin: var(--s-1) 0 0;
+  color: var(--ink-3);
+}
+
+.profiles {
+  grid-column: 5 / span 4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: var(--s-2);
+}
+
+.contact {
+  grid-column: 9 / span 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--s-2);
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+
+.bottom p {
+  margin: 0;
+}
+
+/* Tablet: 8 columns. Contact moves to its own row. */
+@media (max-width: 1023px) {
+  .contact {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-6);
+    margin-top: var(--s-5);
+  }
+}
+
+/* Phone: one column, 44 px rows. */
+@media (max-width: 639px) {
+  .who,
+  .profiles,
+  .contact {
+    grid-column: 1 / -1;
+  }
+
+  .profiles {
+    margin-top: var(--s-4);
+    row-gap: 0;
+    column-gap: var(--s-4);
+  }
+
+  .profiles a,
+  .contact a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .contact {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 0;
+  }
+
+  .contact a:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+}

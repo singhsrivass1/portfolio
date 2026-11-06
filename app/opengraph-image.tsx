@@ -65,12 +65,12 @@ export default async function Image() {
           ))}
         </div>
 
-        {/* Bottom — URL */}
+        {/* Bottom: URL */}
         <div style={{ position: "absolute", bottom: 48, left: 80, fontSize: 14, color: "#9A9A9E", letterSpacing: "0.02em", display: "flex" }}>
           srivxdev.vercel.app
         </div>
 
-        {/* Bottom right — BIT Mesra */}
+        {/* Bottom right: BIT Mesra */}
         <div style={{ position: "absolute", bottom: 48, right: 80, fontSize: 14, color: "#9A9A9E", letterSpacing: "0.02em", display: "flex" }}>
           BIT Mesra · 2024-2028
         </div>

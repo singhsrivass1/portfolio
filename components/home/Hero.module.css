@@ -1,0 +1,203 @@
+.hero {
+  padding-top: 112px;
+  align-items: end;
+}
+
+/* Items wrap as whole phrases; the separator belongs to the item after it. */
+.kicker {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.6em;
+  margin: 0 0 var(--s-6);
+  color: var(--muted);
+}
+
+.kicker span {
+  white-space: nowrap;
+}
+
+.kicker span + span::before {
+  content: "· ";
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.title {
+  grid-column: 1 / span 9;
+  margin: 0;
+  font-size: 76px;
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+
+.title em {
+  font-style: italic;
+}
+
+/* Tailwind's reset already sets sup to position: relative with top: -0.5em;
+   this sets one explicit offset instead of stacking a second raise. */
+.marker {
+  position: relative;
+  top: -2.2em;
+  margin-left: 4px;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 0;
+  letter-spacing: 0;
+  vertical-align: baseline;
+}
+
+/* The visible numeral is small; padding gives it a usable hit area. */
+.marker a {
+  display: inline-block;
+  line-height: 1;
+  padding: 6px 8px;
+  margin: -6px -8px;
+  color: var(--oxide);
+}
+
+.note {
+  grid-column: 10 / span 3;
+  border-top: 1px solid var(--ink);
+  padding-top: var(--s-3);
+}
+
+.noteText {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+.noteNumber {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--oxide);
+}
+
+.paths {
+  display: flex;
+  flex-direction: column;
+  margin: var(--s-2) 0 0;
+  overflow-wrap: anywhere;
+}
+
+.paths a {
+  padding: 3px 0;
+  color: var(--muted);
+}
+
+.paths a:hover {
+  color: var(--oxide);
+}
+
+.support {
+  grid-column: 1 / span 6;
+  margin: var(--s-7) 0 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.actions {
+  grid-column: 1 / span 6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-6);
+  margin: 28px 0 0;
+  font-size: 15px;
+}
+
+.actions a:first-child {
+  font-weight: 500;
+}
+
+/* Tablet: the note drops under the headline; forced line breaks go. */
+@media (max-width: 1023px) {
+  .hero {
+    padding-top: var(--s-9);
+  }
+
+  .br {
+    display: none;
+  }
+
+  .title {
+    grid-column: 1 / -1;
+    font-size: 56px;
+    line-height: 1.08;
+  }
+
+  .note {
+    grid-column: 1 / span 5;
+    margin-top: var(--s-6);
+  }
+
+  .support,
+  .actions {
+    grid-column: 1 / span 6;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero {
+    padding-top: 44px;
+  }
+
+  .kicker {
+    margin-bottom: var(--s-4);
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .marker {
+    top: -1.6em;
+    font-size: 12px;
+  }
+
+  .note,
+  .support,
+  .actions {
+    grid-column: 1 / -1;
+  }
+
+  .note {
+    margin-top: 22px;
+  }
+
+  .support {
+    margin-top: var(--s-5);
+    font-size: 16px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 0;
+    margin-top: var(--s-5);
+  }
+
+  .actions a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0;
+  }
+
+  .actions a:first-child {
+    border-top: 1px solid var(--rule);
+  }
+}

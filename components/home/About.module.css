@@ -1,0 +1,92 @@
+.label {
+  grid-column: 1 / -1;
+  margin: 0 0 var(--s-7);
+}
+
+.statement {
+  grid-column: 1 / span 9;
+  margin: 0;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.body {
+  grid-column: 1 / span 5;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: var(--s-7);
+  color: var(--ink-2);
+}
+
+.body p {
+  margin: 0;
+}
+
+.record {
+  grid-column: 8 / span 5;
+  margin: var(--s-7) 0 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s-4);
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.row:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.row dd {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1023px) {
+  .statement,
+  .body,
+  .record {
+    grid-column: 1 / -1;
+  }
+
+  .statement {
+    font-size: 34px;
+  }
+
+  .body {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 639px) {
+  .label {
+    margin-bottom: var(--s-5);
+  }
+
+  .statement {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+
+  .body {
+    margin-top: var(--s-5);
+    gap: var(--s-4);
+  }
+
+  .record {
+    margin-top: var(--s-5);
+    font-size: 13.5px;
+  }
+}

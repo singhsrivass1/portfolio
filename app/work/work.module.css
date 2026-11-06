@@ -1,0 +1,178 @@
+.intro {
+  padding-top: var(--s-9);
+  align-items: end;
+}
+
+.title {
+  grid-column: 1 / span 5;
+  margin: 0;
+  font-size: 128px;
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+.lead {
+  grid-column: 7 / span 6;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.tableWrap {
+  margin-top: 72px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.caption {
+  caption-side: bottom;
+  text-align: left;
+  padding-top: 14px;
+}
+
+.table th {
+  padding: 0 20px 12px 0;
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--muted);
+  vertical-align: bottom;
+}
+
+.table td {
+  padding: 28px 20px 32px 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.table tbody tr {
+  transition: background-color var(--fast) var(--ease);
+}
+
+.table tbody tr:hover,
+.table tbody tr:focus-within {
+  background: var(--inset);
+}
+
+.colNo { width: 5%; }
+.colProject { width: 24%; }
+.colRole { width: 16%; }
+.colStack { width: 22%; }
+.colYear { width: 7%; }
+.colStatus { width: 11%; }
+
+.no {
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+.table tbody tr:first-child .no {
+  color: var(--oxide);
+}
+
+.name {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.short {
+  display: block;
+  margin-top: 10px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+@media (max-width: 1023px) {
+  .title {
+    grid-column: 1 / -1;
+    font-size: 96px;
+  }
+
+  .lead {
+    grid-column: 1 / -1;
+    margin-top: var(--s-5);
+  }
+}
+
+/* Phone: each row becomes a labelled block. */
+@media (max-width: 767px) {
+  .intro {
+    padding-top: var(--s-7);
+  }
+
+  .title {
+    font-size: 64px;
+  }
+
+  .tableWrap {
+    margin-top: var(--s-7);
+  }
+
+  .table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: auto;
+  }
+
+  .table tr {
+    padding: var(--s-5) 0;
+    border-top: 1px solid var(--ink);
+  }
+
+  .table td {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: var(--s-3);
+    padding: 6px 0;
+    border: 0;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+
+  .name {
+    font-size: 28px;
+  }
+
+  .table tbody tr:hover,
+  .table tbody tr:focus-within {
+    background: none;
+  }
+}

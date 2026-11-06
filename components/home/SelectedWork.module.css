@@ -1,0 +1,326 @@
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.head h2 {
+  margin: 0;
+}
+
+.head a {
+  color: var(--ink);
+}
+
+/* Shared project type */
+.number {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--oxide);
+}
+
+.name {
+  margin: 0;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  margin: var(--s-4) 0 0;
+  font-size: 26px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.ledeSmall {
+  font-size: 24px;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--s-4);
+  row-gap: 6px;
+  margin: var(--s-2) 0 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.facts dt {
+  text-transform: uppercase;
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.figure {
+  margin: 0;
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--aspect);
+  border: 1px solid var(--ink);
+  background: var(--inset);
+}
+
+.img {
+  object-fit: cover;
+  object-position: var(--pos);
+}
+
+.smallOnly {
+  display: none;
+}
+
+.smallImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  margin-top: var(--s-2);
+}
+
+/* Wide feature: Oasis */
+.wide {
+  margin-top: var(--s-8);
+}
+
+.wide > .number {
+  grid-column: 1 / span 1;
+}
+
+.wideHead {
+  grid-column: 2 / span 7;
+}
+
+.wideFacts {
+  grid-column: 10 / span 3;
+}
+
+.wideShot {
+  grid-column: 1 / -1;
+  margin-top: var(--s-7);
+}
+
+.wideSummary {
+  grid-column: 2 / span 6;
+  margin: 40px 0 0;
+  color: var(--ink-2);
+}
+
+.numbers {
+  grid-column: 9 / span 4;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--s-4);
+  margin: 40px 0 0;
+}
+
+.numbers dt {
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.numbers dd {
+  margin: var(--s-2) 0 0;
+  text-transform: uppercase;
+}
+
+.wideLink {
+  grid-column: 2 / span 6;
+  margin: 28px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Split feature: Kajal Cartel */
+.split {
+  margin-top: var(--project-gap);
+}
+
+.splitShot {
+  grid-column: 1 / span 7;
+}
+
+.splitText {
+  grid-column: 9 / span 4;
+}
+
+.splitText .name {
+  margin-top: var(--s-4);
+}
+
+.splitSummary {
+  margin: var(--s-5) 0 0;
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.splitMeta {
+  margin: var(--s-5) 0 0;
+  text-transform: uppercase;
+}
+
+.splitLink {
+  margin: 28px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Brief entries */
+.briefs {
+  margin-top: var(--project-gap);
+  row-gap: var(--s-7);
+}
+
+.brief {
+  grid-column: span 6;
+  border-top: 1px solid var(--ink);
+  padding-top: var(--s-4);
+}
+
+.brief > p:first-child {
+  margin: 0;
+}
+
+.briefName {
+  margin: 14px 0 0;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.briefText {
+  max-width: 500px;
+  margin: 10px 0 0;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.briefLink {
+  margin: var(--s-3) 0 0;
+  font-size: 14px;
+}
+
+/* Tablet: 8 columns, everything stacks except the number column. */
+@media (max-width: 1023px) {
+  .wideHead {
+    grid-column: 2 / -1;
+  }
+
+  .wideFacts {
+    grid-column: 2 / -1;
+    margin-top: var(--s-5);
+  }
+
+  .wideSummary,
+  .wideLink {
+    grid-column: 2 / -1;
+  }
+
+  .numbers {
+    grid-column: 2 / -1;
+  }
+
+  .splitShot,
+  .splitText {
+    grid-column: 1 / -1;
+  }
+
+  /* Stacked, the title leads and the screenshot follows, as for Oasis. */
+  .splitText {
+    order: -1;
+  }
+
+  .splitShot {
+    margin-top: var(--s-6);
+  }
+
+  .brief {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 639px) {
+  .wide {
+    margin-top: var(--s-6);
+  }
+
+  /* Phones show the tighter crop at its own proportions. */
+  .largeOnly {
+    display: none;
+  }
+
+  .smallOnly {
+    display: block;
+    aspect-ratio: auto;
+  }
+
+  .wide > .number,
+  .wideHead,
+  .wideFacts,
+  .wideSummary,
+  .numbers,
+  .wideLink {
+    grid-column: 1 / -1;
+  }
+
+  .wideHead {
+    margin-top: 6px;
+  }
+
+  .number {
+    font-size: 20px;
+  }
+
+  .name {
+    font-size: 40px;
+  }
+
+  .lede,
+  .ledeSmall {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .wideShot {
+    margin-top: var(--s-5);
+  }
+
+  .numbers dt {
+    font-size: 34px;
+  }
+
+  .brief {
+    grid-column: 1 / -1;
+  }
+
+  .briefName {
+    font-size: 28px;
+  }
+
+  /* Standalone links get full-size touch targets on phones. */
+  .wideLink a,
+  .splitLink a,
+  .briefLink a,
+  .head a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
